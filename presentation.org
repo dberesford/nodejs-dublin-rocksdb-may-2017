@@ -16,6 +16,7 @@
    * SSD 200x improvement
    * Problem: Write amplification
    * Problem: Endurance problems
+   * Storage-class memory (SCM)
 
 *  Backstory - latency
    [[./images/fb1.png]]
@@ -64,6 +65,7 @@
      * e.g. pluggable compression modules (snappy, zlib, bzip, etc)
    * Level style compaction & 'Universal' style
    * [[https://github.com/facebook/rocksdb/wiki/Features-Not-in-LevelDB][Features not in Level]]
+   * It's not Level any more!
 
    [[./images/rocks-arch.png]]
 
@@ -126,3 +128,10 @@
    * Polygot persistence
    * More systems, more data, more work 
      * long long tail
+
+* THANK YOU!
+
+   * twitter: @dberesford
+   * https://github.com/dberesford/nodejs-dublin-rocksdb-may-2017
+   * http://www.nearform.com/careers/
+

@@ -2,28 +2,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org990423b">1. Introduction</a></li>
-<li><a href="#org3bac5e7">2. Backstory - Flash</a></li>
-<li><a href="#orgefa3888">3. Backstory - latency</a></li>
-<li><a href="#orge8d663f">4. Backstory - latency</a></li>
-<li><a href="#org0f98cc1">5. Backstory - no latency!</a></li>
-<li><a href="#orga60230e">6. Backstory - LSM</a></li>
-<li><a href="#orgd19c279">7. Backstory - LevelDB</a></li>
-<li><a href="#org75aedce">8. RocksDB Development in Facebook</a></li>
-<li><a href="#org46663e5">9. RocksDB architecture</a></li>
-<li><a href="#orgb88b8df">10. RocksDB what it's not</a></li>
-<li><a href="#org0d73e6e">11. Performance</a></li>
-<li><a href="#org7e88ed0">12. Where is it used?</a></li>
-<li><a href="#orga7dcafe">13. Code/Demo</a></li>
-<li><a href="#org4ac87bb">14. Where is RocksDB going?</a></li>
-<li><a href="#orgc39003b">15. What's the plan for rocksdb-node?</a></li>
-<li><a href="#org99d663e">16. RocksDB &amp; Node.js - Exponential Disruption!</a></li>
+<li><a href="#org257a70d">1. Introduction</a></li>
+<li><a href="#org1005ba4">2. Backstory - Flash</a></li>
+<li><a href="#orgaa6f297">3. Backstory - latency</a></li>
+<li><a href="#orgc7a155a">4. Backstory - latency</a></li>
+<li><a href="#org3040600">5. Backstory - no latency!</a></li>
+<li><a href="#org5a21db4">6. Backstory - LSM</a></li>
+<li><a href="#org33dbb8b">7. Backstory - LevelDB</a></li>
+<li><a href="#orgfc17120">8. RocksDB Development in Facebook</a></li>
+<li><a href="#orgd6bbe25">9. RocksDB architecture</a></li>
+<li><a href="#orgdc0ad37">10. RocksDB what it's not</a></li>
+<li><a href="#org8ee34e4">11. Performance</a></li>
+<li><a href="#org1f41922">12. Where is it used?</a></li>
+<li><a href="#org25f040b">13. Code/Demo</a></li>
+<li><a href="#orgfaacae4">14. Where is RocksDB going?</a></li>
+<li><a href="#orgc62534a">15. What's the plan for rocksdb-node?</a></li>
+<li><a href="#orgebb3656">16. RocksDB &amp; Node.js - Exponential Disruption!</a></li>
+<li><a href="#orgf55e588">17. THANK YOU!</a></li>
 </ul>
 </div>
 </div>
 
 
-<a id="org990423b"></a>
+<a id="org257a70d"></a>
 
 # Introduction
 
@@ -33,7 +34,7 @@
 -   Disruptions!
 
 
-<a id="org3bac5e7"></a>
+<a id="org1005ba4"></a>
 
 # Backstory - Flash
 
@@ -43,30 +44,31 @@
 -   SSD 200x improvement
 -   Problem: Write amplification
 -   Problem: Endurance problems
+-   Storage-class memory (SCM)
 
 
-<a id="orgefa3888"></a>
+<a id="orgaa6f297"></a>
 
 # Backstory - latency
 
 ![img](./images/fb1.png)
 
 
-<a id="orge8d663f"></a>
+<a id="orgc7a155a"></a>
 
 # Backstory - latency
 
 ![img](./images/fb2.png)
 
 
-<a id="org0f98cc1"></a>
+<a id="org3040600"></a>
 
 # Backstory - no latency!
 
 ![img](./images/fb3.png)
 
 
-<a id="orga60230e"></a>
+<a id="org5a21db4"></a>
 
 # Backstory - LSM
 
@@ -78,7 +80,7 @@
     ![img](./images/lsm1.png)
 
 
-<a id="orgd19c279"></a>
+<a id="org33dbb8b"></a>
 
 # Backstory - LevelDB
 
@@ -88,7 +90,7 @@
     ![img](./images/leveldb_levels.png)
 
 
-<a id="org75aedce"></a>
+<a id="orgfc17120"></a>
 
 # RocksDB Development in Facebook
 
@@ -106,7 +108,7 @@
     -   i.e. [The RUM Conjecture](http://daslab.seas.harvard.edu/rum-conjecture/)
 
 
-<a id="org46663e5"></a>
+<a id="orgd6bbe25"></a>
 
 # RocksDB architecture
 
@@ -115,11 +117,12 @@
     -   e.g. pluggable compression modules (snappy, zlib, bzip, etc)
 -   Level style compaction & 'Universal' style
 -   [Features not in Level](https://github.com/facebook/rocksdb/wiki/Features-Not-in-LevelDB)
+-   It's not Level any more!
 
 ![img](./images/rocks-arch.png)
 
 
-<a id="orgb88b8df"></a>
+<a id="orgdc0ad37"></a>
 
 # RocksDB what it's not
 
@@ -130,7 +133,7 @@
 -   It's an **embedded** database!
 
 
-<a id="org0d73e6e"></a>
+<a id="org8ee34e4"></a>
 
 # Performance
 
@@ -138,7 +141,7 @@
 -   [Replacement for InnoDB](https://code.facebook.com/posts/190251048047090/myrocks-a-space-and-write-optimized-mysql-database/)
 
 
-<a id="org7e88ed0"></a>
+<a id="org1f41922"></a>
 
 # Where is it used?
 
@@ -148,7 +151,7 @@
 -   LinkedIn, Yahoo, Pinterest, Airbnb &&#x2026;
 
 
-<a id="orga7dcafe"></a>
+<a id="org25f040b"></a>
 
 # Code/Demo
 
@@ -156,7 +159,7 @@
 -   [RocksDB-Node](https://github.com/dberesford/rocksdb-node)
 
 
-<a id="org4ac87bb"></a>
+<a id="orgfaacae4"></a>
 
 # Where is RocksDB going?
 
@@ -167,7 +170,7 @@
 -   [JSON Document](https://github.com/facebook/rocksdb/blob/master/include/rocksdb/utilities/json_document.h)
 
 
-<a id="orgc39003b"></a>
+<a id="orgc62534a"></a>
 
 # What's the plan for rocksdb-node?
 
@@ -181,7 +184,7 @@
     i.e. this can be done in other modules..
 
 
-<a id="org99d663e"></a>
+<a id="orgebb3656"></a>
 
 # RocksDB & Node.js - Exponential Disruption!
 
@@ -199,4 +202,13 @@
 -   Polygot persistence
 -   More systems, more data, more work 
     -   long long tail
+
+
+<a id="orgf55e588"></a>
+
+# THANK YOU!
+
+-   twitter: @dberesford
+-   <https://github.com/dberesford/nodejs-dublin-rocksdb-may-2017>
+-   <http://www.nearform.com/careers/>
 
