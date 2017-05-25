@@ -1,0 +1,128 @@
+#+TITLE: Rocksdb-Node 
+#+DATE: 25/5/2017
+#+AUTHOR: @dberesford
+*  Introduction
+
+   * RocksDB Backstory
+   * RocksDB & Node.js
+   * Code/Demo
+   * Disruptions!
+
+*  Backstory - Flash
+   
+   * Flash - massively disruptive
+   * NVM-E arrays mainstream
+   * Data migrating
+   * SSD 200x improvement
+   * Problem: Write amplification
+   * Problem: Endurance problems
+
+*  Backstory - latency
+   [[./images/fb1.png]]
+
+*  Backstory - latency
+   [[./images/fb2.png]]
+
+*  Backstory - no latency!
+   [[./images/fb3.png]]
+
+*  Backstory - LSM 
+
+   * LSM (Log-Structured Merge-tree)
+   * Patrick O'Neill Paper 1996
+   * BigTable, HBase, Cassandra, Influx
+   * Make disk access sequential!
+
+     [[./images/lsm1.png]]
+
+*  Backstory - LevelDB
+
+   * Google - 2011
+   * Replacement for SQLite in IndexDB
+
+     [[./images/leveldb_levels.png]]
+
+*  RocksDB Development in Facebook
+
+   * Level was evolutionary, but has problems..
+     * Not built for server workloads
+     * Poor performance once db bigger than RAM
+     * Compaction process insufficient
+     * Not optimised for Flash
+   * RocksDB
+     * Embedded K/V store with point lookups and range scans
+     * Optimized for fast storage, e.g. Flash and RAM
+     * Server Side database with full production support
+     * Scale linearly with number of CPU cores and with storage IOPs
+   * Elegant tradeoffs of read, write & space amplification
+     *   i.e. [[http://daslab.seas.harvard.edu/rum-conjecture/][The RUM Conjecture]]
+
+*  RocksDB architecture
+
+   * Pluggable architecture
+     * Tunable for different workloads on different hardware
+     * e.g. pluggable compression modules (snappy, zlib, bzip, etc)
+   * Level style compaction & 'Universal' style
+   * [[https://github.com/facebook/rocksdb/wiki/Features-Not-in-LevelDB][Features not in Level]]
+
+   [[./images/rocks-arch.png]]
+
+*  RocksDB what it's not
+
+   * Not distributed
+   * Not fault tolerant
+   * Not replicated
+   * Not sharded
+   * It's an *embedded* database!
+
+          
+*  Performance
+
+   * [[https://github.com/facebook/rocksdb/wiki/Performance-Benchmarks][Performance benchmarks]]
+   * [[https://code.facebook.com/posts/190251048047090/myrocks-a-space-and-write-optimized-mysql-database/][Replacement for InnoDB]]
+
+*  Where is it used?
+
+   * MyRocks 
+   * CockroachDB
+   * MongoRocks
+   * LinkedIn, Yahoo, Pinterest, Airbnb &... 
+
+*  Code/Demo
+
+   * [[https://github.com/facebook/rocksdb/wiki][RocksDB]]
+   * [[https://github.com/dberesford/rocksdb-node][RocksDB-Node]]
+
+*  Where is RocksDB going?
+   * [[http://rocksdb.org/blog/][Very active!]]
+   * [[https://github.com/facebook/rocksdb/blob/master/include/rocksdb/utilities/geo_db.h][Geo]] 
+   * [[https://github.com/facebook/rocksdb/blob/master/include/rocksdb/utilities/spatial_db.h][Spatial]]
+   * [[https://github.com/facebook/rocksdb/blob/master/include/rocksdb/utilities/date_tiered_db.h][Date Tiered]]
+   * [[https://github.com/facebook/rocksdb/blob/master/include/rocksdb/utilities/json_document.h][JSON Document]]
+
+*  What's the plan for rocksdb-node?
+
+   * Try support rocksdb API as closely as possible
+   * Finish the core RocksDB API
+     * features which require user defined functions
+       i.e. Comparators, Filters, Merge Operators, and SliceTransform 
+   * Move on to the 'utility' APIs
+       i.e. Backup, Geo, Spatial, JSON etc
+   * Do not go beyond the rocksdb API!
+       i.e. this can be done in other modules..
+
+*  RocksDB & Node.js - Exponential Disruption!
+   * Why write a database in node?
+     * Imagine a world...
+   * Keep compute close to the data
+   * IOT
+   * No Caching
+   * Analytics
+     * No SQL
+     * ETL & ELT
+     * "Big" data
+   * ML
+   * [[http://scs-architecture.org/][SCS]] (microservices are dead!)
+   * Polygot persistence
+   * More systems, more data, more work 
+     * long long tail
